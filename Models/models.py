@@ -27,29 +27,39 @@ class User(UserMixin, db.Model):
 
 
 class Book:
+    def __init__(self):
+        pass
+
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    bookName = db.Column(db.String(120), index=True, unique=True, nullable=True
+    bookName = db.Column(db.String(120), index=True, unique=True, nullable=True)
     image = db.Column(db.String(120), index=True, unique=True, nullable=True)
     description = db.Column(db.String(120), index=True, unique=True, nullable=True)
     genre_id = db.Column(db.Integer, db.ForeignKey('genre.id'))
 
 
 class Genre:
+    def __init__(self):
+        pass
+
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     type = db.Column(db.String(120), index=True, unique=True, nullable=True)
     genre = db.Column(db.String(120), index=True, unique=True, nullable=True)
     book_id = db.relationship('Address', backref='person', lazy=True)
 
 
-
 class Library:
+    def __init__(self):
+        pass
+
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
         #userID integer NOT NULL,
         #bookID integer NOT NULL
 
 
-
 class Rate:
+    def __init__(self):
+        pass
+
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     rate = db.Column(db.String(120), index=True, unique=True, nullable=True)
     comment = db.Column(db.String(120), index=True, unique=True, nullable=True)
