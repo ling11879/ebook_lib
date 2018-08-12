@@ -2,58 +2,70 @@
 <html lang="en">
 <head>
 
-	<link rel="stylesheet" type="text/css" href="../static/assets/css/util.css">
-	<link rel="stylesheet" type="text/css" href="../static/assets/css/main.css">
+    <link rel="stylesheet" type="text/css" href="../static/assets/css/util.css">
+    <link rel="stylesheet" type="text/css" href="../static/assets/css/main.css">
 </head>
 
 <body>
-	<div class="limiter">
-		<div class="container-login100">
-			<div class="wrap-login100">
-				<div class="login100-form-title" style="background-image: url(./images/bg-01.jpg);">
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100">
+            <div class="login100-form-title" style="background-image: url(./images/bg-01.jpg);">
 					<span class="login100-form-title-1">
 						Sign In
 					</span>
-				</div>
+            </div>
 
-				<form class="login100-form validate-form">
-					<div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
-						<span class="label-input100">{{ form.username.label }}</span>
-{#						<input class="input100" type="text" name="username" placeholder="Enter username">#}
-						{{ form.username(class="input100", placeholder="Enter username") }}
-						<span class="focus-input100"></span>
-					</div>
+            <form class="login100-form validate-form">
+                <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
+                    <span class="label-input100">{{ form.username.label }}</span>
+                    {#						<input class="input100" type="text" name="username" placeholder="Enter username">#}
 
-					<div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
-						<span class="label-input100">{{ form.password.label }}</span>
-{#						<input class="input100" type="password" name="pass" placeholder="Enter password">#}
-                        {{ form.username(class="input100", placeholder="Enter password", type="password") }}
-						<span class="focus-input100"></span>
-					</div>
+                    {{ form.username(class="input100", placeholder="Enter username") }}
 
-					<div class="flex-sb-m w-full p-b-30">
-						<div>
-							<a href="#" class="txt1">
-								Forgot Password?
-							</a>
-						</div>
-						<div>
-							<a href="#" class="txt1">
-								Create an Account
-							</a>
-						</div>
+                    {% for error in form.username.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
 
-					</div>
+                    <span class="focus-input100"></span>
+                </div>
 
-					<div class="container-login100-form-btn">
-                        {{ form.submit(class="login100-form-btn") }}
-{#						<button class="login100-form-btn">#}
-{#							Login#}
-{#						</button>#}
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
+                <div class="wrap-input100 validate-input m-b-18" data-validate="Password is required">
+                    <span class="label-input100">{{ form.password.label }}</span>
+                    {#						<input class="input100" type="password" name="pass" placeholder="Enter password">#}
+
+                    {{ form.password(class="input100", placeholder="Enter password", type="password") }}
+
+                    {% for error in form.password.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+
+                    <span class="focus-input100"></span>
+                </div>
+
+                <div class="flex-sb-m w-full p-b-30">
+                    <div>
+                        <a href="#" class="txt1">
+                            Forgot Password?
+                        </a>
+                    </div>
+                    <div>
+                        <a href="#" class="txt1">
+                            Create an Account
+                        </a>
+                    </div>
+
+                </div>
+
+                <div class="container-login100-form-btn">
+                    {{ form.submit(class="login100-form-btn") }}
+                    {#						<button class="login100-form-btn">#}
+                    {#							Login#}
+                    {#						</button>#}
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 </body>
 </html>
