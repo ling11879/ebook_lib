@@ -46,7 +46,7 @@ class Rate:
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     rate = db.Column(db.String(120), index=True, unique=True, nullable=True)
     comment = db.Column(db.String(120), index=True, unique=True, nullable=True)
-    book_id = db.relationship('Address', backref='person', lazy=True)
-    user_id = db.relationship('Address', backref='person', lazy=True)
+    book_id = db.relationship('Book', backref='rate', lazy=True)
+    user_id = db.relationship('User', backref='rate', lazy=True)
 
 
