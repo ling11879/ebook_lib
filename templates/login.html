@@ -2,8 +2,10 @@
 <html lang="en">
 <head>
 
-    <link rel="stylesheet" type="text/css" href="/static/assets/css/util.css">
-    <link rel="stylesheet" type="text/css" href="/static/assets/css/main.css">
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/css/util.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/css/main.css') }}">
+
 </head>
 
 <body>
@@ -38,7 +40,7 @@
                         </a>
                     </div>
                     <div>
-                        <a href="#" class="txt1">
+                        <a href="/users/register" class="txt1">
                             Create an Account
                         </a>
                     </div>
