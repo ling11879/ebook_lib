@@ -1,0 +1,73 @@
+CREATE TABLE category(
+ categoryID integer PRIMARY KEY AUTOINCREMENT,
+ title text NOT NULL
+);
+
+CREATE TABLE bookCategory(
+ bcID integer PRIMARY KEY AUTOINCREMENT,
+ bID integer NOT NULL,
+ catID integer NOT NULL
+);
+
+CREATE TABLE comment(
+ commentID integer PRIMARY KEY AUTOINCREMENT,
+ comment text NOT NULL,
+ bID integer NOT NULL,
+ uID integer NOT NULL 
+);
+
+CREATE TABLE library(
+ libraryID integer PRIMARY KEY AUTOINCREMENT,
+ userID integer NOT NULL,
+ bookID integer NOT NULL
+);
+
+CREATE TABLE rate(
+ rateID integer PRIMARY KEY AUTOINCREMENT,
+ rate integer NOT NULL,
+ uid integer NOT NULL,
+ bid integer NOT NULL
+);
+
+CREATE TABLE book(
+ bookID integer PRIMARY KEY AUTOINCREMENT,
+ title text NOT NULL,
+ authorID integer NOT NULL,
+ year date NOT NULL,
+ status text default "available"
+);
+
+CREATE TABLE author(
+ authorID integer PRIMARY KEY AUTOINCREMENT,
+ name text NOT NULL
+);
+
+CREATE TABLE users(
+ userID integer PRIMARY KEY AUTOINCREMENT,
+ firstname text NOT NULL,
+ lastname text NOT NULL,
+ username text NOT NULL,
+ password text NOT NULL,
+ role text NOT NULL
+);
+
+ Insert into users(username,firstname,lastname,password,role) values('admin','admin','admin','admin','admin'),('user1','user1','user1','user1','user'),
+ ('user2','user2','user2','user2','user'),('user3','user3','user3','user3','user'),('user4','user4','user4','user4','user'),('user5','user5','user5','user5','user');	
+
+
+ Insert into author(name) values('Matthew Quick'),('J. K. Rowling'),('Rachel Hollis'),('James Patterson'),('Stephen King'),('Kevin Kwan'),('Robert Dugoni'),
+('Sejal Badani');	
+
+ Insert into book(title,year,authorID) values('Boy21','1','06-18-2013'),('The Silver Linings Playbook: A Novel','1','10-16-2012'),
+('Forgive Me, Leonard Peacock','1','07-01-2014'),("The reason You're Alive: A Novel",'1','07-04-2017'),('Sorta Like a Rock Star','1','05-03-2011');
+
+ Insert into category(title) values('Art & Music'),('Biographies'),('Business'),('Kids'),('Comics'),('Computer & Tech'),
+('Cooking'),('Hobbies & Craft'),('Edu & Reference'),('Health & Fitness'),('History'),('Horror'),('Entertainment')
+,('Literature & Fiction'),('Medical'),('Mysteries'),('Parenting'),('Social Sciences'),('Religion'),('Romance'),('Science & Math')
+,('Sci-Fy & Fantasy'),('Self-Help'),('Teen'),('Travel'),('True Crime'),('Westerns');	
+
+Insert into bookCategory(bID,catID) values('1','7'),('2','4'),('3','5'),('4','9'),('5','10');
+
+
+select * from book inner join author inner join bookCategory inner join category group by book.bookID;
+
