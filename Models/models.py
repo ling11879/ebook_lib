@@ -44,7 +44,7 @@ class Genre:
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     type = db.Column(db.String(120), index=True, unique=True, nullable=True)
     genre = db.Column(db.String(120), index=True, unique=True, nullable=True)
-    book_id = db.relationship('Address', backref='person', lazy=True)
+    book_id = db.relationship('Book', backref='genre', lazy=True)
 
 
 class Library:
@@ -52,8 +52,8 @@ class Library:
         pass
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-        #userID integer NOT NULL,
-        #bookID integer NOT NULL
+    book_id = db.relationship('Book', backref='library', lazy=True)
+    user_id = db.relationship('User', backref='rate', lazy=True)
 
 
 class Rate:
