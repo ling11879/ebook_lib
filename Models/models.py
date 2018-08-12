@@ -3,6 +3,15 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 from app import db, login
 
+library = db.Table('library',
+    db.Column('user_id', db.Integer, db.ForeignKey('user.id'), primary_key=True),
+    db.Column('book_id', db.Integer, db.ForeignKey('book.id'), primary_key=True)
+)
+
+book_category = db.Table('genres',
+    db.Column('genre_id', db.Integer, db.ForeignKey('genre.id'), primary_key=True),
+    db.Column('book_id', db.Integer, db.ForeignKey('book.id'), primary_key=True)
+)
 
 class User(UserMixin, db.Model):
 
@@ -26,7 +35,7 @@ class User(UserMixin, db.Model):
         return check_password_hash(self.password_hash, password)
 
 
-class Book:
+class Book(db.Model):
     def __init__(self):
         pass
 
@@ -34,36 +43,31 @@ class Book:
     bookName = db.Column(db.String(120), index=True, unique=True, nullable=True)
     image = db.Column(db.String(120), index=True, unique=True, nullable=True)
     description = db.Column(db.String(120), index=True, unique=True, nullable=True)
-    genre_id = db.Column(db.Integer, db.ForeignKey('genre.id'))
+    genres = db.relationship('Genre', secondary=book_category, lazy='subquery',
+                           backref=db.backref('books', lazy=True))
+    library = db.relationship('User', secondary=library, lazy='subquery',
+                             backref=db.backref('users', lazy=True))
 
 
-class Genre:
+class Genre(db.Model):
     def __init__(self):
         pass
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     type = db.Column(db.String(120), index=True, unique=True, nullable=True)
     genre = db.Column(db.String(120), index=True, unique=True, nullable=True)
-    book_id = db.relationship('Book', backref='genre', lazy=True)
 
 
-class Library:
-    def __init__(self):
-        pass
-
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    book_id = db.relationship('Book', backref='library', lazy=True)
-    user_id = db.relationship('User', backref='rate', lazy=True)
 
 
-class Rate:
-    def __init__(self):
-        pass
-
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    rate = db.Column(db.String(120), index=True, unique=True, nullable=True)
-    comment = db.Column(db.String(120), index=True, unique=True, nullable=True)
-    book_id = db.relationship('Book', backref='rate', lazy=True)
-    user_id = db.relationship('User', backref='rate', lazy=True)
+# class Rate:
+#     def __init__(self):
+#         pass
+#
+#     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+#     rate = db.Column(db.String(120), index=True, unique=True, nullable=True)
+#     comment = db.Column(db.String(120), index=True, unique=True, nullable=True)
+#     book_id = db.relationship('Book', backref='rate', lazy=True)
+#     user_id = db.relationship('User', backref='rate', lazy=True)
 
 
