@@ -2,7 +2,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask import render_template, flash, redirect, url_for
 from flask_login import current_user, login_user, login_required, logout_user
-from forms import LoginForm
+from forms import *
 from flask import Flask
 from config import Config
 from flask_login import LoginManager
@@ -43,6 +43,11 @@ def login():
 def index():
     return render_template('index.html', title='Sign In')
 
+
+@app.route('/users/register')
+def register():
+    form = RegisterForm()
+    return render_template('registration.html', title='Register', form=form)
 # ADMIN
 
 # Dashboard
@@ -59,6 +64,6 @@ def logout():
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
 
 
