@@ -40,8 +40,9 @@ def login():
 
 
 @app.route('/')
+@login_required
 def index():
-    return render_template('index.html', title='Sign In')
+    return render_template('index.html', title='Dashboard')
 
 
 @app.route('/users/register')
@@ -60,7 +61,8 @@ def dashboard():
 @app.route('/logout')
 def logout():
     logout_user()
-    return redirect(url_for('index'))
+    return redirect(url_for('login'))
+
 
 
 if __name__ == '__main__':

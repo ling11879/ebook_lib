@@ -2,8 +2,10 @@
 <html lang="en">
 <head>
 
+
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/css/util.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/css/main.css') }}">
+
 </head>
 
 <body>
@@ -16,30 +18,18 @@
 					</span>
             </div>
 
-            <form class="login100-form validate-form">
+            <form class="login100-form validate-form" method="post" action="/users/login">
                 <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
                     <span class="label-input100">{{ form.username.label }}</span>
                     {#						<input class="input100" type="text" name="username" placeholder="Enter username">#}
 
                     {{ form.username(class="input100", placeholder="Enter username") }}
-
-                    {% for error in form.username.errors %}
-                        <span style="color: red;">[{{ error }}]</span>
-                    {% endfor %}
-
                     <span class="focus-input100"></span>
                 </div>
 
                 <div class="wrap-input100 validate-input m-b-18" data-validate="Password is required">
                     <span class="label-input100">{{ form.password.label }}</span>
-                    {#						<input class="input100" type="password" name="pass" placeholder="Enter password">#}
-
                     {{ form.password(class="input100", placeholder="Enter password", type="password") }}
-
-                    {% for error in form.password.errors %}
-                        <span style="color: red;">[{{ error }}]</span>
-                    {% endfor %}
-
                     <span class="focus-input100"></span>
                 </div>
 
@@ -59,9 +49,6 @@
 
                 <div class="container-login100-form-btn">
                     {{ form.submit(class="login100-form-btn") }}
-                    {#						<button class="login100-form-btn">#}
-                    {#							Login#}
-                    {#						</button>#}
                 </div>
             </form>
         </div>
