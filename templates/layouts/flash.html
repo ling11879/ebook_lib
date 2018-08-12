@@ -1,14 +1,13 @@
-{% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
-        {% for category, m in messages %}
-            {% if category %}
-                <div class="alert alert-{{ category }}">
-            {% else %}
-                <div class="alert alert-info">
-            {% endif %}
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            {{ m }}
-            </div>
-        {% endfor %}
-    {% endif %}
+{% with messages = get_flashed_messages() %}
+    <div class="alert alert-{{ status }}">
+        <button type="button" aria-hidden="true" class="close">×</button>
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+
 {% endwith %}
